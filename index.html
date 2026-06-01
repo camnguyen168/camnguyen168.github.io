@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Tailwind CSS for clean, modern styling -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col justify-between">
+
+    <!-- Main Content Container -->
+    <main class="max-w-3xl mx-auto px-6 py-16 flex-grow flex flex-col justify-center">
+        
+        <!-- Introduction Section -->
+        <header class="mb-12">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+                Hi, I'm <span class="text-blue-600">Your Name</span> 👋
+            </h1>
+            <p class="text-lg text-gray-600 leading-relaxed">
+                Welcome to my project showcase. I specialize in finance and data analytics. 
+                Below, you can explore my latest data science project where I analyze complex datasets and build predictive models.
+            </p>
+        </header>
+
+        <!-- Project Section / Buttons -->
+        <section class="bg-white p-8 rounded-xl shadow-xs border border-gray-100">
+            <h2 class="text-xl font-bold text-gray-950 mb-3">Featured Analytics Project</h2>
+            <p class="text-gray-600 mb-6">
+                An end-to-end data analysis workflow covering data cleaning, exploratory data analysis (EDA), and implementation regression model ưith fixed effects in Panel Data.
+            </p>
+            
+            <div class="flex flex-wrap gap-4">
+                <!-- Button linking to the rendered HTML notebook -->
+                <a href="ma.html" 
+                   class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm">
+                    View Interactive Report
+                </a>
+                
+                <!-- Optional: Link to raw repository or GitHub profile -->
+                <a href="https://github.com" target="_blank"
+                   class="inline-flex items-center justify-center px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors">
+                    View Source Code
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Simple Footer -->
+    <footer class="py-6 text-center text-sm text-gray-400 border-t border-gray-100">
+        © 2026 Cam Nguyen. Built with GitHub Pages.
+    </footer>
+
+</body>
+</html>
