@@ -47054,7 +47054,6 @@ Best CV ROC-AUC: 0.8865</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># 2. Re-prepare data (CRITICAL: Ensures shapes match)</span>
-<span class="c1"># Assuming 'preprocessor' is your fitted ColumnTransformer from earlier</span>
 <span class="n">X_train_scaled</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
 <span class="n">X_test_scaled</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 
