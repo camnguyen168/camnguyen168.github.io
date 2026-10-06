@@ -47,6 +47,14 @@
         .spin-slow { transform-box: fill-box; transform-origin: center; animation: spin 14s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        .sway { transform-box: fill-box; transform-origin: bottom center; animation: sway 3.2s ease-in-out infinite; }
+        @keyframes sway { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+
+        .plane { animation: fly 6s ease-in-out infinite; }
+        @keyframes fly { 0%,100% { transform: translate(0,0) rotate(0deg); } 25% { transform: translate(8px,-6px) rotate(-4deg); } 50% { transform: translate(14px,2px) rotate(3deg); } 75% { transform: translate(5px,6px) rotate(-2deg); } }
+        .trail { animation: dash 2s linear infinite; }
+        @keyframes dash { to { stroke-dashoffset: -18; } }
+
         .sparkle { transform-box: fill-box; transform-origin: center; animation: twinkle 2s ease-in-out infinite; }
         @keyframes twinkle { 0%,100% { transform: scale(.6); opacity: .4; } 50% { transform: scale(1); opacity: 1; } }
 
@@ -97,9 +105,9 @@
                 </p>
 
                 <p class="text-base text-gray-600 leading-relaxed mb-6">
-                    Welcome to my project showcase! I'm enthusiastic about data analytics, econometrics, and data science, with domain knowledge in finance.
-                    With a background in finance and controlling, I bridge the gap between data and strategic financial decisions.
-                    Below, you can explore my latest econometrics and data science projects, where I analyze complex datasets and build models.
+                    Welcome to my project portfolio! I’m passionate about finance, data analytics, econometrics, and data science.
+                    With a background in finance and controlling, I enjoy combining financial thinking with quantitative methods and technology to understand complex problems and support data-driven decisions.
+                    My projects explore the intersection of finance and analytics, ranging from financial and econometric modeling to machine learning and interactive data applications.
                 </p>
 
                 <div class="flex flex-wrap gap-2 mb-7">
@@ -125,8 +133,22 @@
 
             <!-- ===== Animated illustration (original artwork) ===== -->
             <div class="reveal">
-                <svg viewBox="0 0 400 340" class="w-full max-w-md mx-auto drop-shadow-sm" role="img" aria-label="Illustration of a girl at her laptop surrounded by animated charts and coins">
+                <svg viewBox="0 0 400 340" class="w-full max-w-md mx-auto drop-shadow-sm" role="img" aria-label="Illustration of a girl with a daisy in her hair at her laptop, surrounded by animated charts, coins, daisies, a paper plane and a suitcase">
                     <defs>
+                        <symbol id="daisy" viewBox="-12 -12 24 24">
+                            <g fill="#fff" stroke="#e3dcc4" stroke-width=".6">
+                                <ellipse cx="0" cy="-6" rx="2.6" ry="5"/>
+                                <ellipse cx="0" cy="-6" rx="2.6" ry="5" transform="rotate(45)"/>
+                                <ellipse cx="0" cy="-6" rx="2.6" ry="5" transform="rotate(90)"/>
+                                <ellipse cx="0" cy="-6" rx="2.6" ry="5" transform="rotate(135)"/>
+                                <ellipse cx="0" cy="-6" rx="2.6" ry="5" transform="rotate(180)"/>
+                                <ellipse cx="0" cy="-6" rx="2.6" ry="5" transform="rotate(225)"/>
+                                <ellipse cx="0" cy="-6" rx="2.6" ry="5" transform="rotate(270)"/>
+                                <ellipse cx="0" cy="-6" rx="2.6" ry="5" transform="rotate(315)"/>
+                            </g>
+                            <circle r="3.4" fill="#f2cc8f"/>
+                            <circle r="3.4" fill="none" stroke="#d9a94f" stroke-width=".8"/>
+                        </symbol>
                         <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
                             <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#3d405b" flood-opacity=".15"/>
                         </filter>
@@ -147,6 +169,8 @@
                     <!-- bun -->
                     <circle cx="200" cy="80" r="17" fill="#3d405b"/>
                     <rect x="188" y="92" width="24" height="6" rx="3" fill="#e07a5f"/>
+                    <!-- daisy hair clip -->
+                    <use href="#daisy" x="211" y="78" width="26" height="26" class="sway"/>
                     <!-- neck -->
                     <rect x="191" y="176" width="18" height="20" rx="6" fill="#ecc4aa"/>
                     <!-- body / sweater -->
@@ -156,15 +180,17 @@
                     <circle cx="200" cy="140" r="42" fill="#f7d9c4"/>
                     <!-- bangs -->
                     <path d="M157 138 Q158 96 200 96 Q242 96 243 138 Q228 116 208 120 Q196 108 178 122 Q166 128 157 138 Z" fill="#3d405b"/>
-                    <!-- glasses -->
-                    <g fill="none" stroke="#3d405b" stroke-width="2.2">
-                        <circle cx="184" cy="146" r="10"/>
-                        <circle cx="216" cy="146" r="10"/>
-                        <path d="M194 146 Q200 142 206 146"/>
+                    <!-- cute sparkly eyes -->
+                    <g class="eye">
+                        <ellipse cx="184" cy="147" rx="4.5" ry="6" fill="#17171c"/>
+                        <circle cx="185.8" cy="144.6" r="1.7" fill="#fff"/>
+                        <circle cx="182.6" cy="149.6" r=".8" fill="#fff"/>
                     </g>
-                    <!-- eyes -->
-                    <ellipse class="eye" cx="184" cy="146" rx="3.2" ry="4.5" fill="#3d405b"/>
-                    <ellipse class="eye" cx="216" cy="146" rx="3.2" ry="4.5" fill="#3d405b"/>
+                    <g class="eye">
+                        <ellipse cx="216" cy="147" rx="4.5" ry="6" fill="#17171c"/>
+                        <circle cx="217.8" cy="144.6" r="1.7" fill="#fff"/>
+                        <circle cx="214.6" cy="149.6" r=".8" fill="#fff"/>
+                    </g>
                     <!-- cheeks + smile -->
                     <circle cx="174" cy="162" r="6" fill="#e07a5f" opacity=".3"/>
                     <circle cx="226" cy="162" r="6" fill="#e07a5f" opacity=".3"/>
@@ -234,6 +260,43 @@
                         <g transform="translate(40 168)" filter="url(#shadow)">
                             <circle cx="24" cy="24" r="24" fill="#3d405b"/>
                             <text x="24" y="31" text-anchor="middle" font-family="Fraunces, serif" font-size="20" font-weight="800" fill="#f0ead2">%</text>
+                        </g>
+                    </g>
+
+                    <!-- ===== travel: paper plane with dashed trail ===== -->
+                    <path d="M118 30 Q150 6 176 26" fill="none" stroke="#81b29a" stroke-width="2" stroke-dasharray="4 5" stroke-linecap="round" class="trail"/>
+                    <g class="plane">
+                        <g transform="translate(176 14)">
+                            <path d="M0 10 L26 0 L16 24 L12 14 Z" fill="#fff" stroke="#3d405b" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M12 14 L26 0" stroke="#3d405b" stroke-width="2"/>
+                        </g>
+                    </g>
+
+                    <!-- ===== travel: suitcase with stickers ===== -->
+                    <g class="float float-d1">
+                        <g transform="translate(78 280)">
+                            <rect x="12" y="-8" width="16" height="10" rx="3" fill="none" stroke="#3d405b" stroke-width="3"/>
+                            <rect x="0" y="0" width="40" height="32" rx="6" fill="#e07a5f"/>
+                            <rect x="0" y="12" width="40" height="4" fill="#b5533a" opacity=".5"/>
+                            <circle cx="11" cy="24" r="4.5" fill="#f2cc8f"/>
+                            <use href="#daisy" x="23" y="18" width="13" height="13"/>
+                        </g>
+                    </g>
+
+                    <!-- ===== daisy patch ===== -->
+                    <g transform="translate(232 274)">
+                        <g class="sway">
+                            <path d="M10 46 Q8 26 12 10" fill="none" stroke="#81b29a" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M10 32 q-10 -4 -12 -12 q10 2 12 10" fill="#81b29a"/>
+                            <use href="#daisy" x="-2" y="-4" width="28" height="28"/>
+                        </g>
+                        <g class="sway" style="animation-delay:-1.3s">
+                            <path d="M38 46 Q40 32 36 22" fill="none" stroke="#81b29a" stroke-width="3" stroke-linecap="round"/>
+                            <use href="#daisy" x="26" y="10" width="22" height="22"/>
+                        </g>
+                        <g class="sway" style="animation-delay:-.6s">
+                            <path d="M58 46 Q56 36 60 30" fill="none" stroke="#81b29a" stroke-width="3" stroke-linecap="round"/>
+                            <use href="#daisy" x="52" y="21" width="17" height="17"/>
                         </g>
                     </g>
 
