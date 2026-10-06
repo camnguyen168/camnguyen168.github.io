@@ -3,169 +3,402 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Cam Nguyen · Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col justify-between">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #3d405b;
+            --sage: #81b29a;
+            --cream: #f0ead2;
+            --peach: #f2cc8f;
+            --coral: #e07a5f;
+            --skin: #f7d9c4;
+        }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #faf8f2; }
+        .display { font-family: 'Fraunces', Georgia, serif; }
 
-    <main class="max-w-4xl mx-auto px-6 py-16 flex-grow flex flex-col justify-center">
-        
-        <header class="mb-12">
-            <h1 class="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-                Hi, I'm <span class="text-[#3d405b]">Cam Nguyen</span> 
-            </h1>
-            <p class="text-lg text-gray-600 leading-relaxed">
-                Welcome to my project showcase! I am enthusiasted about data analytics, econometrics, and data science with domain knowledge in finance.
-                With a background in finance and controlling, I bridge the gap between data and strategic financial decisions. My technical toolkit includes Python, R, SQL, Power BI (DAX/M code), Tableau, and Excel.  
-                Below, you can explore my latest econometrics and data science project, in which I analyze complex datasets and build models.
-            </p>
-        </header>
+        /* soft background blobs */
+        .blob { position: absolute; border-radius: 9999px; filter: blur(60px); opacity: .45; z-index: 0; }
+
+        /* illustration animations */
+        .float     { animation: float 5s ease-in-out infinite; }
+        .float-d1  { animation-delay: -1.2s; }
+        .float-d2  { animation-delay: -2.5s; }
+        .float-d3  { animation-delay: -3.7s; }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        .wave { transform-box: view-box; transform-origin: 244px 222px; animation: wave 2.4s ease-in-out infinite; }
+        @keyframes wave { 0%,60%,100% { transform: rotate(0deg); } 15% { transform: rotate(-14deg); } 30% { transform: rotate(8deg); } 45% { transform: rotate(-10deg); } }
+
+        .eye { transform-box: fill-box; transform-origin: center; animation: blink 4.5s infinite; }
+        @keyframes blink { 0%,94%,100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
+
+        .bar { transform-box: fill-box; transform-origin: bottom; animation: grow 2.8s ease-in-out infinite alternate; }
+        .bar:nth-child(2) { animation-delay: -.6s; }
+        .bar:nth-child(3) { animation-delay: -1.2s; }
+        .bar:nth-child(4) { animation-delay: -1.8s; }
+        @keyframes grow { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
+
+        .line-draw { stroke-dasharray: 120; stroke-dashoffset: 120; animation: draw 3.5s ease-in-out infinite; }
+        @keyframes draw { 0% { stroke-dashoffset: 120; } 50%,80% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -120; } }
+
+        .spin-slow { transform-box: fill-box; transform-origin: center; animation: spin 14s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .sparkle { transform-box: fill-box; transform-origin: center; animation: twinkle 2s ease-in-out infinite; }
+        @keyframes twinkle { 0%,100% { transform: scale(.6); opacity: .4; } 50% { transform: scale(1); opacity: 1; } }
+
+        /* typing caret */
+        .caret::after { content: '|'; margin-left: 2px; color: var(--coral); animation: caret 1s steps(1) infinite; }
+        @keyframes caret { 50% { opacity: 0; } }
+
+        /* project cards */
+        .card { transition: transform .3s ease, box-shadow .3s ease; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -18px rgba(61,64,91,.35); }
+        .card:hover .card-icon { transform: rotate(-8deg) scale(1.08); }
+        .card-icon { transition: transform .3s ease; }
+
+        /* reveal on scroll */
+        .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+        .js .reveal.in { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .js .reveal { opacity: 1; transform: none; }
+            .line-draw { stroke-dashoffset: 0; }
+        }
+    </style>
+    <script>document.documentElement.classList.add('js');</script>
+</head>
+<body class="text-gray-800 min-h-screen flex flex-col overflow-x-hidden">
+
+    <!-- ================= HERO ================= -->
+    <header class="relative">
+        <div class="blob w-72 h-72 bg-[#81b29a] -top-16 -left-20"></div>
+        <div class="blob w-80 h-80 bg-[#f2cc8f] top-40 -right-24"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 pt-16 pb-12 grid md:grid-cols-2 gap-10 items-center">
+            <div class="reveal">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-[#81b29a]/30 text-sm text-[#3d405b] shadow-sm mb-5">
+                    <span class="w-2 h-2 rounded-full bg-[#81b29a] animate-pulse"></span>
+                    Open to data &amp; finance roles
+                </span>
+
+                <h1 class="display text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                    Hi, I'm <span class="text-[#3d405b] relative whitespace-nowrap">Cam Nguyen
+                        <svg class="absolute left-0 -bottom-2 w-full" height="10" viewBox="0 0 200 10" preserveAspectRatio="none" aria-hidden="true"><path d="M2 7 Q 50 1 100 6 T 198 4" fill="none" stroke="#e07a5f" stroke-width="3" stroke-linecap="round"/></svg>
+                    </span> 👋
+                </h1>
+
+                <p class="text-xl text-[#3d405b] font-medium mb-5 h-8">
+                    <span id="typed" class="caret">Data Analyst</span>
+                </p>
+
+                <p class="text-base text-gray-600 leading-relaxed mb-6">
+                    Welcome to my project showcase! I'm enthusiastic about data analytics, econometrics, and data science, with domain knowledge in finance.
+                    With a background in finance and controlling, I bridge the gap between data and strategic financial decisions.
+                    Below, you can explore my latest econometrics and data science projects, where I analyze complex datasets and build models.
+                </p>
+
+                <div class="flex flex-wrap gap-2 mb-7">
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full bg-[#3d405b] text-white">Python</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full bg-[#81b29a] text-white">R</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full bg-[#e07a5f] text-white">SQL</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full bg-[#f2cc8f] text-[#3d405b]">Power BI · DAX/M</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full bg-white border border-gray-200 text-[#3d405b]">Tableau</span>
+                    <span class="px-3 py-1 text-xs font-semibold rounded-full bg-white border border-gray-200 text-[#3d405b]">Excel</span>
+                </div>
+
+                <div class="flex flex-wrap gap-3">
+                    <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#3d405b] hover:bg-[#2e3047] text-white font-medium rounded-lg transition-colors shadow-sm text-sm">
+                        Explore projects
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+                    </a>
+                    <a href="https://github.com/camnguyen168" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 hover:border-[#3d405b] text-[#3d405b] font-medium rounded-lg transition-colors text-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.4-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+                        GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- ===== Animated illustration (original artwork) ===== -->
+            <div class="reveal">
+                <svg viewBox="0 0 400 340" class="w-full max-w-md mx-auto drop-shadow-sm" role="img" aria-label="Illustration of a girl at her laptop surrounded by animated charts and coins">
+                    <defs>
+                        <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#3d405b" flood-opacity=".15"/>
+                        </filter>
+                    </defs>
+
+                    <!-- backdrop -->
+                    <circle cx="200" cy="175" r="135" fill="#f0ead2"/>
+                    <circle cx="200" cy="175" r="150" fill="none" stroke="#81b29a" stroke-width="2" stroke-dasharray="4 10" class="spin-slow" opacity=".7"/>
+
+                    <!-- sparkles -->
+                    <path class="sparkle" d="M60 120 l3 -9 l3 9 l9 3 l-9 3 l-3 9 l-3 -9 l-9 -3z" fill="#f2cc8f"/>
+                    <path class="sparkle" style="animation-delay:-1s" d="M350 150 l2 -6 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2z" fill="#e07a5f"/>
+                    <path class="sparkle" style="animation-delay:-.5s" d="M330 300 l2 -6 l2 6 l6 2 l-6 2 l-2 6 l-2 -6 l-6 -2z" fill="#81b29a"/>
+
+                    <!-- ===== girl ===== -->
+                    <!-- long hair behind -->
+                    <path d="M146 140 Q146 84 200 84 Q254 84 254 140 L258 230 Q200 246 142 230 Z" fill="#3d405b"/>
+                    <!-- bun -->
+                    <circle cx="200" cy="80" r="17" fill="#3d405b"/>
+                    <rect x="188" y="92" width="24" height="6" rx="3" fill="#e07a5f"/>
+                    <!-- neck -->
+                    <rect x="191" y="176" width="18" height="20" rx="6" fill="#ecc4aa"/>
+                    <!-- body / sweater -->
+                    <path d="M140 262 Q142 206 180 196 L220 196 Q258 206 260 262 Z" fill="#81b29a"/>
+                    <path d="M186 196 Q200 210 214 196" fill="none" stroke="#f0ead2" stroke-width="4" stroke-linecap="round"/>
+                    <!-- head -->
+                    <circle cx="200" cy="140" r="42" fill="#f7d9c4"/>
+                    <!-- bangs -->
+                    <path d="M157 138 Q158 96 200 96 Q242 96 243 138 Q228 116 208 120 Q196 108 178 122 Q166 128 157 138 Z" fill="#3d405b"/>
+                    <!-- glasses -->
+                    <g fill="none" stroke="#3d405b" stroke-width="2.2">
+                        <circle cx="184" cy="146" r="10"/>
+                        <circle cx="216" cy="146" r="10"/>
+                        <path d="M194 146 Q200 142 206 146"/>
+                    </g>
+                    <!-- eyes -->
+                    <ellipse class="eye" cx="184" cy="146" rx="3.2" ry="4.5" fill="#3d405b"/>
+                    <ellipse class="eye" cx="216" cy="146" rx="3.2" ry="4.5" fill="#3d405b"/>
+                    <!-- cheeks + smile -->
+                    <circle cx="174" cy="162" r="6" fill="#e07a5f" opacity=".3"/>
+                    <circle cx="226" cy="162" r="6" fill="#e07a5f" opacity=".3"/>
+                    <path d="M192 164 Q200 172 208 164" fill="none" stroke="#3d405b" stroke-width="2.5" stroke-linecap="round"/>
+
+                    <!-- waving arm -->
+                    <g class="wave">
+                        <path d="M244 222 Q262 196 282 168" fill="none" stroke="#81b29a" stroke-width="18" stroke-linecap="round"/>
+                        <circle cx="285" cy="162" r="11" fill="#f7d9c4"/>
+                    </g>
+
+                    <!-- desk + laptop -->
+                    <rect x="150" y="196" width="100" height="66" rx="8" fill="#d9d4c3"/>
+                    <rect x="154" y="200" width="92" height="58" rx="6" fill="#e9e5d6"/>
+                    <!-- laptop lid logo: tiny chart -->
+                    <g transform="translate(186 216)" fill="#81b29a">
+                        <rect x="0" y="14" width="6" height="10" rx="1.5"/>
+                        <rect x="10" y="8" width="6" height="16" rx="1.5"/>
+                        <rect x="20" y="2" width="6" height="22" rx="1.5" fill="#e07a5f"/>
+                    </g>
+                    <rect x="70" y="260" width="260" height="12" rx="6" fill="#3d405b"/>
+                    <!-- mug -->
+                    <rect x="96" y="232" width="22" height="28" rx="5" fill="#e07a5f"/>
+                    <path d="M118 238 q10 0 10 9 q0 9 -10 9" fill="none" stroke="#e07a5f" stroke-width="4"/>
+                    <path d="M102 224 q4 -6 0 -12 M110 224 q4 -6 0 -12" fill="none" stroke="#3d405b" stroke-width="2" stroke-linecap="round" opacity=".35" class="float"/>
+
+                    <!-- ===== floating card: bar chart ===== -->
+                    <g class="float float-d1">
+                        <g transform="translate(28 36)" filter="url(#shadow)">
+                            <rect width="96" height="76" rx="12" fill="#fff"/>
+                            <rect x="12" y="10" width="40" height="5" rx="2.5" fill="#e5e7eb"/>
+                            <g>
+                                <rect class="bar" x="14" y="30" width="12" height="36" rx="3" fill="#81b29a"/>
+                                <rect class="bar" x="32" y="40" width="12" height="26" rx="3" fill="#f2cc8f"/>
+                                <rect class="bar" x="50" y="24" width="12" height="42" rx="3" fill="#e07a5f"/>
+                                <rect class="bar" x="68" y="34" width="12" height="32" rx="3" fill="#3d405b"/>
+                            </g>
+                        </g>
+                    </g>
+
+                    <!-- ===== floating card: line chart ===== -->
+                    <g class="float float-d2">
+                        <g transform="translate(278 30)" filter="url(#shadow)">
+                            <rect width="96" height="76" rx="12" fill="#fff"/>
+                            <text x="12" y="22" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#81b29a">+12.4%</text>
+                            <path d="M10 64 H86" stroke="#eef0f2" stroke-width="2"/>
+                            <polyline class="line-draw" points="12,60 28,52 42,56 56,40 70,44 84,28" fill="none" stroke="#3d405b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="84" cy="28" r="4" fill="#e07a5f"/>
+                        </g>
+                    </g>
+
+                    <!-- ===== floating: coins ===== -->
+                    <g class="float float-d3">
+                        <g transform="translate(300 210)">
+                            <ellipse cx="22" cy="40" rx="22" ry="8" fill="#d9a94f"/>
+                            <rect x="0" y="30" width="44" height="10" fill="#d9a94f"/>
+                            <ellipse cx="22" cy="30" rx="22" ry="8" fill="#f2cc8f"/>
+                            <ellipse cx="22" cy="22" rx="22" ry="8" fill="#d9a94f"/>
+                            <rect x="0" y="12" width="44" height="10" fill="#d9a94f"/>
+                            <ellipse cx="22" cy="12" rx="22" ry="8" fill="#f2cc8f"/>
+                            <text x="22" y="16" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#b0812e">€</text>
+                        </g>
+                    </g>
+
+                    <!-- ===== floating: percent bubble ===== -->
+                    <g class="float">
+                        <g transform="translate(40 168)" filter="url(#shadow)">
+                            <circle cx="24" cy="24" r="24" fill="#3d405b"/>
+                            <text x="24" y="31" text-anchor="middle" font-family="Fraunces, serif" font-size="20" font-weight="800" fill="#f0ead2">%</text>
+                        </g>
+                    </g>
+
+                    <!-- ===== floating: magnifier ===== -->
+                    <g class="float float-d2">
+                        <g transform="translate(330 104)">
+                            <circle cx="12" cy="12" r="10" fill="#fff" stroke="#81b29a" stroke-width="4"/>
+                            <path d="M20 20 L30 30" stroke="#81b29a" stroke-width="5" stroke-linecap="round"/>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= PROJECTS ================= -->
+    <main id="projects" class="relative z-10 max-w-5xl mx-auto px-6 py-12 flex-grow w-full">
+        <div class="reveal flex items-end justify-between mb-8">
+            <div>
+                <p class="text-sm font-semibold uppercase tracking-widest text-[#81b29a] mb-1">Selected work</p>
+                <h2 class="display text-3xl font-extrabold text-gray-900">Projects</h2>
+            </div>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            <section class="bg-white p-8 rounded-xl shadow-xs border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <h2 class="text-xl font-bold text-gray-950 mb-3">CEO Narcissm and M&A Transaction Regression Models in Python</h2>
-                    <p class="text-gray-600 mb-6">
-                        An end-to-end data analysis workflow covering data cleaning, exploratory data analysis (EDA), and implementation regression model with fixed effects in Panel Data.
-                    </p>
+            <!-- 1 -->
+            <section class="card reveal bg-white p-7 rounded-2xl border border-gray-100 shadow-sm flex flex-col">
+                <div class="card-icon w-12 h-12 rounded-xl bg-[#3d405b]/10 flex items-center justify-center mb-5">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3d405b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><circle cx="8" cy="14" r="1.5"/><circle cx="12" cy="10" r="1.5"/><circle cx="16" cy="12" r="1.5"/><circle cx="19" cy="7" r="1.5"/><path d="M6 17 L20 6" stroke-dasharray="2 2"/></svg>
                 </div>
-                
-                <div class="flex flex-row flex-wrap gap-4 mt-auto">
-                    <a href="Project_Narcissm_M&A.html" 
-                       class="inline-flex items-center justify-center px-5 py-2.5 bg-[#81b29a] hover:opacity-90 text-white font-medium rounded-lg transition-colors shadow-sm text-sm whitespace-nowrap">
-                        View the code
-                    </a>
-                    <a href="https://github.com/camnguyen168/Financial-Econometrics" target="_blank"
-                       class="inline-flex items-center justify-center px-5 py-2.5 bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium rounded-lg transition-colors text-sm whitespace-nowrap">
-                        View Github Link
-                    </a>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-[#3d405b]/10 text-[#3d405b]">Python</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-[#81b29a]/15 text-[#4f7d66]">Panel Data</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-950 mb-3">CEO Narcissism and M&amp;A Transaction Regression Models in Python</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    An end-to-end data analysis workflow covering data cleaning, exploratory data analysis (EDA), and regression models with fixed effects on panel data.
+                </p>
+                <div class="flex flex-row flex-wrap gap-3 mt-auto">
+                    <a href="Project_Narcissm_M&A.html" class="inline-flex items-center justify-center px-5 py-2.5 bg-[#81b29a] hover:opacity-90 text-white font-medium rounded-lg transition-opacity shadow-sm text-sm whitespace-nowrap">View the code</a>
+                    <a href="https://github.com/camnguyen168/Financial-Econometrics" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-2.5 bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium rounded-lg transition-opacity text-sm whitespace-nowrap">View GitHub</a>
                 </div>
             </section>
 
-                        <section class="bg-white p-8 rounded-xl shadow-xs border border-gray-100 flex flex-col justify-between">
-    <div>
-        <div class="flex items-center gap-2 mb-3">
-            <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-700">
-                Advanced R
-            </span>
-            <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-purple-50 text-purple-700">
-                Shiny
-            </span>
-            <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-green-50 text-green-700">
-                Econometrics
-            </span>
+            <!-- 2 -->
+            <section class="card reveal bg-white p-7 rounded-2xl border border-gray-100 shadow-sm flex flex-col">
+                <div class="card-icon w-12 h-12 rounded-xl bg-[#e07a5f]/10 flex items-center justify-center mb-5">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e07a5f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 14l3-3 3 2 4-5"/><path d="M8 21h8"/></svg>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-700">Advanced R</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-purple-50 text-purple-700">Shiny</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-green-50 text-green-700">Econometrics</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-950 mb-3">Interactive Regression Diagnostic App</h3>
+                <p class="text-gray-600 mb-4 leading-relaxed">
+                    An interactive R Shiny application for diagnosing linear, logistic, time-series, and panel regression models. Built around a custom
+                    <code class="text-sm bg-gray-100 px-1.5 py-0.5 rounded">diag_lm</code>
+                    S3 class with model-specific statistical tests, diagnostic plots, simulation-based validation, robust inference, and optional AI-assisted interpretation.
+                </p>
+                <p class="text-sm text-gray-500 mb-6">R · Shiny · S3 · Econometrics · Simulation · LLM</p>
+                <div class="flex flex-row flex-wrap gap-3 mt-auto">
+                    <a href="https://camnguyen16.shinyapps.io/Project/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#81b29a] hover:opacity-90 text-white font-medium rounded-lg transition-opacity shadow-sm text-sm whitespace-nowrap">
+                        <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span> Launch Live App
+                    </a>
+                    <a href="https://github.com/camnguyen168/Advance-R--Regression-Diagnostic-App" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-2.5 bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium rounded-lg transition-opacity text-sm whitespace-nowrap">View GitHub</a>
+                </div>
+            </section>
+
+            <!-- 3 -->
+            <section class="card reveal bg-white p-7 rounded-2xl border border-gray-100 shadow-sm flex flex-col">
+                <div class="card-icon w-12 h-12 rounded-xl bg-[#f2cc8f]/30 flex items-center justify-center mb-5">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#b0812e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-[#3d405b]/10 text-[#3d405b]">Python</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-[#f2cc8f]/30 text-[#8a6420]">Credit Risk</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-950 mb-3">Credit Risk Model and Scorecard in Python</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Using the Lending Club dataset to build a logistic regression model that predicts probability of default (PD), then turning it into a credit scorecard.
+                </p>
+                <div class="flex flex-row flex-wrap gap-3 mt-auto">
+                    <a href="loan_PDmodel_scorecard.html" class="inline-flex items-center justify-center px-5 py-2.5 bg-[#81b29a] hover:opacity-90 text-white font-medium rounded-lg transition-opacity shadow-sm text-sm whitespace-nowrap">View the code</a>
+                    <a href="https://github.com/camnguyen168/Credit-Risk-Model_Scorecard" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-2.5 bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium rounded-lg transition-opacity text-sm whitespace-nowrap">View GitHub</a>
+                </div>
+            </section>
+
+            <!-- 4 -->
+            <section class="card reveal bg-white p-7 rounded-2xl border border-gray-100 shadow-sm flex flex-col">
+                <div class="card-icon w-12 h-12 rounded-xl bg-[#81b29a]/15 flex items-center justify-center mb-5">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4f7d66" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v8M9 10v8M15 10v8M19 10v8"/><path d="M3 20h18"/></svg>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-700">R</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-[#3d405b]/10 text-[#3d405b]">Python</span>
+                    <span class="px-2.5 py-1 text-xs font-semibold rounded-full bg-[#e07a5f]/10 text-[#b5533a]">Machine Learning</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-950 mb-3">Predicting Banking Customer Churn</h3>
+                <p class="text-gray-600 mb-6 leading-relaxed">
+                    Predicting banking customer churn with Logistic Regression, Ridge, XGBoost and Random Forest, plus interpretation techniques: LIME and Permutation Importance.
+                </p>
+                <div class="flex flex-row flex-wrap gap-3 mt-auto">
+                    <a href="bank_churn_python.html" class="inline-flex items-center justify-center px-5 py-2.5 bg-[#81b29a] hover:opacity-90 text-white font-medium rounded-lg transition-opacity shadow-sm text-sm whitespace-nowrap">View Python (short version)</a>
+                    <a href="https://github.com/camnguyen168/Predicting_Customer-Churn-in-Banking/blob/main/MLinFinance_BankCustomerChurn.R" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-2.5 bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium rounded-lg transition-opacity text-sm whitespace-nowrap">View R Code</a>
+                </div>
+            </section>
+
+            <!-- 5 -->
+            <section class="card reveal bg-white p-7 rounded-2xl border border-gray-100 shadow-sm flex flex-col md:col-span-2">
+                <div class="md:flex md:items-center md:gap-8">
+                    <div class="flex-1">
+                        <div class="card-icon w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center mb-5">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7e22ce" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13 6l-2 12"/></svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-950 mb-3">Advanced R Problems</h3>
+                        <p class="text-gray-600 mb-6 md:mb-0 leading-relaxed">R Markdown documentation, an LLM model use case, and Shiny app work.</p>
+                    </div>
+                    <div class="flex flex-row flex-wrap gap-3">
+                        <a href="documentation_Rmarkdown.html" class="inline-flex items-center justify-center px-5 py-2.5 bg-[#81b29a] hover:opacity-90 text-white font-medium rounded-lg transition-opacity shadow-sm text-sm whitespace-nowrap">R Markdown Example</a>
+                        <a href="https://github.com/camnguyen168/camnguyen168.github.io/blob/main/LLM_model.R" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-5 py-2.5 bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium rounded-lg transition-opacity text-sm whitespace-nowrap">LLM Model Use Case</a>
+                    </div>
+                </div>
+            </section>
+
         </div>
-
-        <h2 class="text-xl font-bold text-gray-950 mb-3">
-            Interactive Regression Diagnostic App
-        </h2>
-
-        <p class="text-gray-600 mb-4 leading-relaxed">
-            An interactive R Shiny application for diagnosing linear, logistic,
-            time-series, and panel regression models. Built around a custom
-            <code class="text-sm bg-gray-100 px-1.5 py-0.5 rounded">diag_lm</code>
-            S3 class with model-specific statistical tests, diagnostic plots,
-            simulation-based validation, robust inference, and optional
-            AI-assisted interpretation.
-        </p>
-
-        <p class="text-sm text-gray-500 mb-6">
-            R · Shiny · S3 · Econometrics · Simulation · LLM
-        </p>
-    </div>
-
-    <div class="flex flex-row flex-wrap gap-3 mt-auto">
-
-        <a href="https://camnguyen16.shinyapps.io/Project/"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="inline-flex items-center justify-center px-5 py-2.5
-                  bg-[#81b29a] hover:opacity-90 text-white font-medium
-                  rounded-lg transition-colors shadow-sm text-sm whitespace-nowrap">
-            Launch Live App
-        </a>
-
-        <a href="https://github.com/camnguyen168/Advance-R--Regression-Diagnostic-App"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="inline-flex items-center justify-center px-5 py-2.5
-                  bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium
-                  rounded-lg transition-colors text-sm whitespace-nowrap">
-            View GitHub Repository
-        </a>
-
-    </div>
-</section>
-
-            <section class="bg-white p-8 rounded-xl shadow-xs border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <h2 class="text-xl font-bold text-gray-950 mb-3">Credit Risk Model and Scorecard in Python</h2>
-                    <p class="text-gray-600 mb-6">
-                        Using Lending Club Data set to create Logistic Regression Model to predict probability of default and build Scorecard
-                    </p>
-                </div>
-                
-                <div class="flex flex-row flex-wrap gap-4 mt-auto">
-                    <a href="loan_PDmodel_scorecard.html" 
-                       class="inline-flex items-center justify-center px-5 py-2.5 bg-[#81b29a] hover:opacity-90 text-white font-medium rounded-lg transition-colors shadow-sm text-sm whitespace-nowrap">
-                        View the code
-                    </a>
-                    <a href="https://github.com/camnguyen168/Credit-Risk-Model_Scorecard" target="_blank"
-                       class="inline-flex items-center justify-center px-5 py-2.5 bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium rounded-lg transition-colors text-sm whitespace-nowrap">
-                        View Github Link
-                    </a>
-                </div>
-            </section>
-
-            <section class="bg-white p-8 rounded-xl shadow-xs border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <h2 class="text-xl font-bold text-gray-950 mb-3">Predicting Banking Customer Churn in R Code</h2>
-                    <p class="text-gray-600 mb-6">
-                        Predicting Banking Customer Churn with different models: Logistic Regression, Ridge, XGBoost, Random Forest and also interpretation techniques: LIME, Permutation Importance
-                    </p>
-                </div>
-                
-                <div class="flex flex-row flex-wrap gap-4 mt-auto">
-                    <a href="bank_churn_python.html" 
-                       class="inline-flex items-center justify-center px-5 py-2.5 bg-[#81b29a] hover:opacity-90 text-white font-medium rounded-lg transition-colors shadow-sm text-sm whitespace-nowrap">
-                        View Python (short version)
-                    </a>
-                    <a href="https://github.com/camnguyen168/Predicting_Customer-Churn-in-Banking/blob/main/MLinFinance_BankCustomerChurn.R" target="_blank"
-                       class="inline-flex items-center justify-center px-5 py-2.5 bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium rounded-lg transition-colors text-sm whitespace-nowrap">
-                        View R Code
-                    </a>
-                </div>
-            </section>
-
-            <section class="bg-white p-8 rounded-xl shadow-xs border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <h2 class="text-xl font-bold text-gray-950 mb-3">Advance R Problem</h2>
-                    <p class="text-gray-600 mb-6">
-                        Rmarkdown, LLM Model Use Case, Shiny App
-                    </p>
-                </div>
-                
-                <div class="flex flex-row flex-wrap gap-4 mt-auto">
-                    <a href="documentation_Rmarkdown.html" 
-                       class="inline-flex items-center justify-center px-5 py-2.5 bg-[#81b29a] hover:opacity-90 text-white font-medium rounded-lg transition-colors shadow-sm text-sm whitespace-nowrap">
-                        R Markdown Example
-                    </a>
-                    <a href="https://github.com/camnguyen168/camnguyen168.github.io/blob/main/LLM_model.R" target="_blank"
-                       class="inline-flex items-center justify-center px-5 py-2.5 bg-[#f0ead2] hover:opacity-80 text-gray-700 font-medium rounded-lg transition-colors text-sm whitespace-nowrap">
-                        LLM Model Use Case
-                    </a>
-                </div>
-            </section>
-
-
-
-           
-
     </main>
 
-    <footer class="py-6 text-center text-sm text-gray-400 border-t border-gray-100 mt-12">
-        © 2026 Cam Nguyen. Built with GitHub Pages.
+    <footer class="py-8 text-center text-sm text-gray-400 border-t border-gray-200/70 mt-12">
+        © 2026 Cam Nguyen · Built with GitHub Pages
     </footer>
+
+    <script>
+        // Typing effect for roles
+        (function () {
+            const el = document.getElementById('typed');
+            const words = ['Data Analyst', 'Econometrics Enthusiast', 'Finance & Controlling', 'Data Scientist in the making'];
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            let w = 0, i = words[0].length, deleting = true;
+            function tick() {
+                const word = words[w];
+                el.textContent = word.slice(0, i);
+                if (deleting) {
+                    i--;
+                    if (i < 0) { deleting = false; w = (w + 1) % words.length; i = 0; }
+                    setTimeout(tick, 45);
+                } else {
+                    i++;
+                    if (i > words[w].length) { deleting = true; setTimeout(tick, 1800); return; }
+                    setTimeout(tick, 85);
+                }
+            }
+            setTimeout(tick, 2000);
+        })();
+
+        // Reveal on scroll
+        (function () {
+            const items = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) { items.forEach(e => e.classList.add('in')); return; }
+            const io = new IntersectionObserver(entries => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+            }, { threshold: 0.12 });
+            items.forEach((e, idx) => { e.style.transitionDelay = (idx % 2) * 0.1 + 's'; io.observe(e); });
+        })();
+    </script>
 </body>
 </html>
